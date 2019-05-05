@@ -135,7 +135,7 @@ func init() {
 func init() { proto.RegisterFile("todo_lists.proto", fileDescriptor_31d64610e8c524ba) }
 
 var fileDescriptor_31d64610e8c524ba = []byte{
-	// 225 bytes of a gzipped FileDescriptorProto
+	// 224 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0x28, 0xc9, 0x4f, 0xc9,
 	0x8f, 0xcf, 0xc9, 0x2c, 0x2e, 0x29, 0xd6, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0xe2, 0x04, 0x89,
 	0x80, 0x05, 0xa4, 0xa4, 0xd3, 0xf3, 0xf3, 0xd3, 0x73, 0x52, 0xf5, 0xc1, 0x12, 0x49, 0xa5, 0x69,
@@ -145,12 +145,11 @@ var fileDescriptor_31d64610e8c524ba = []byte{
 	0x1a, 0x9c, 0x41, 0x70, 0xbe, 0x90, 0x08, 0x17, 0x6b, 0x49, 0x66, 0x49, 0x4e, 0xaa, 0x04, 0x33,
 	0x58, 0x02, 0xc2, 0x11, 0x12, 0xe2, 0x62, 0x49, 0xca, 0x4f, 0xa9, 0x94, 0x60, 0x01, 0x0b, 0x82,
 	0xd9, 0x4a, 0x0a, 0x5c, 0x7c, 0xee, 0xa9, 0x25, 0x20, 0x0b, 0x82, 0x52, 0x0b, 0x4b, 0x53, 0x8b,
-	0x4b, 0xd0, 0xed, 0x31, 0xaa, 0xe3, 0xe2, 0x06, 0x49, 0xfb, 0x26, 0xe6, 0x25, 0xa6, 0xa7, 0x16,
+	0x4b, 0xd0, 0xed, 0x31, 0xaa, 0xe7, 0xe2, 0x06, 0x49, 0xfb, 0x26, 0xe6, 0x25, 0xa6, 0xa7, 0x16,
 	0x09, 0x99, 0x72, 0xb1, 0x43, 0x35, 0x08, 0x49, 0xea, 0xc1, 0xbd, 0xa0, 0x87, 0x6a, 0x88, 0x14,
-	0x3f, 0x92, 0x14, 0x58, 0xad, 0x05, 0x17, 0x37, 0x54, 0x89, 0x4f, 0x66, 0x71, 0x89, 0x90, 0x98,
-	0x1e, 0xc4, 0xcb, 0x7a, 0x30, 0x2f, 0xeb, 0xb9, 0x82, 0xbc, 0x8c, 0xa1, 0xcf, 0x80, 0x31, 0x89,
-	0x0d, 0xac, 0xc4, 0x18, 0x10, 0x00, 0x00, 0xff, 0xff, 0x7f, 0x37, 0x0c, 0xbe, 0x42, 0x01, 0x00,
-	0x00,
+	0x3f, 0x92, 0x14, 0x58, 0xad, 0x25, 0x17, 0x0f, 0x54, 0x89, 0x0f, 0x48, 0x50, 0x48, 0x4c, 0x0f,
+	0xe2, 0x67, 0x3d, 0x98, 0x9f, 0xf5, 0x5c, 0x41, 0x7e, 0xc6, 0xd0, 0x68, 0xc0, 0x98, 0xc4, 0x06,
+	0x56, 0x62, 0x0c, 0x08, 0x00, 0x00, 0xff, 0xff, 0xf1, 0x91, 0x5a, 0x88, 0x43, 0x01, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -166,7 +165,7 @@ const _ = grpc.SupportPackageIsVersion4
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type TodoManagerClient interface {
 	GetTodo(ctx context.Context, in *GetTodoRequest, opts ...grpc.CallOption) (*Todo, error)
-	GetTodoList(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (TodoManager_GetTodoListClient, error)
+	GetTodoLists(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (TodoManager_GetTodoListsClient, error)
 }
 
 type todoManagerClient struct {
@@ -186,12 +185,12 @@ func (c *todoManagerClient) GetTodo(ctx context.Context, in *GetTodoRequest, opt
 	return out, nil
 }
 
-func (c *todoManagerClient) GetTodoList(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (TodoManager_GetTodoListClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_TodoManager_serviceDesc.Streams[0], "/todolists.TodoManager/GetTodoList", opts...)
+func (c *todoManagerClient) GetTodoLists(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (TodoManager_GetTodoListsClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_TodoManager_serviceDesc.Streams[0], "/todolists.TodoManager/GetTodoLists", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &todoManagerGetTodoListClient{stream}
+	x := &todoManagerGetTodoListsClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -201,16 +200,16 @@ func (c *todoManagerClient) GetTodoList(ctx context.Context, in *empty.Empty, op
 	return x, nil
 }
 
-type TodoManager_GetTodoListClient interface {
+type TodoManager_GetTodoListsClient interface {
 	Recv() (*Todo, error)
 	grpc.ClientStream
 }
 
-type todoManagerGetTodoListClient struct {
+type todoManagerGetTodoListsClient struct {
 	grpc.ClientStream
 }
 
-func (x *todoManagerGetTodoListClient) Recv() (*Todo, error) {
+func (x *todoManagerGetTodoListsClient) Recv() (*Todo, error) {
 	m := new(Todo)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -221,7 +220,7 @@ func (x *todoManagerGetTodoListClient) Recv() (*Todo, error) {
 // TodoManagerServer is the server API for TodoManager service.
 type TodoManagerServer interface {
 	GetTodo(context.Context, *GetTodoRequest) (*Todo, error)
-	GetTodoList(*empty.Empty, TodoManager_GetTodoListServer) error
+	GetTodoLists(*empty.Empty, TodoManager_GetTodoListsServer) error
 }
 
 // UnimplementedTodoManagerServer can be embedded to have forward compatible implementations.
@@ -231,8 +230,8 @@ type UnimplementedTodoManagerServer struct {
 func (*UnimplementedTodoManagerServer) GetTodo(ctx context.Context, req *GetTodoRequest) (*Todo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTodo not implemented")
 }
-func (*UnimplementedTodoManagerServer) GetTodoList(req *empty.Empty, srv TodoManager_GetTodoListServer) error {
-	return status.Errorf(codes.Unimplemented, "method GetTodoList not implemented")
+func (*UnimplementedTodoManagerServer) GetTodoLists(req *empty.Empty, srv TodoManager_GetTodoListsServer) error {
+	return status.Errorf(codes.Unimplemented, "method GetTodoLists not implemented")
 }
 
 func RegisterTodoManagerServer(s *grpc.Server, srv TodoManagerServer) {
@@ -257,24 +256,24 @@ func _TodoManager_GetTodo_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TodoManager_GetTodoList_Handler(srv interface{}, stream grpc.ServerStream) error {
+func _TodoManager_GetTodoLists_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(empty.Empty)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(TodoManagerServer).GetTodoList(m, &todoManagerGetTodoListServer{stream})
+	return srv.(TodoManagerServer).GetTodoLists(m, &todoManagerGetTodoListsServer{stream})
 }
 
-type TodoManager_GetTodoListServer interface {
+type TodoManager_GetTodoListsServer interface {
 	Send(*Todo) error
 	grpc.ServerStream
 }
 
-type todoManagerGetTodoListServer struct {
+type todoManagerGetTodoListsServer struct {
 	grpc.ServerStream
 }
 
-func (x *todoManagerGetTodoListServer) Send(m *Todo) error {
+func (x *todoManagerGetTodoListsServer) Send(m *Todo) error {
 	return x.ServerStream.SendMsg(m)
 }
 
@@ -289,8 +288,8 @@ var _TodoManager_serviceDesc = grpc.ServiceDesc{
 	},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "GetTodoList",
-			Handler:       _TodoManager_GetTodoList_Handler,
+			StreamName:    "GetTodoLists",
+			Handler:       _TodoManager_GetTodoLists_Handler,
 			ServerStreams: true,
 		},
 	},
