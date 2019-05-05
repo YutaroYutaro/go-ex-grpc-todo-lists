@@ -6,7 +6,7 @@ import "google/protobuf/empty.proto";
 
 service TodoManager {
     rpc GetTodo (GetTodoRequest) returns (Todo);
-    rpc GetTodoList (google.protobuf.Empty) returns (stream Todo);
+    rpc GetTodoLists (google.protobuf.Empty) returns (stream Todo);
 }
 
 message Todo {
