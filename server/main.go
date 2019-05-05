@@ -33,7 +33,7 @@ func (s *server) GetTodo(ctx context.Context, in *todolists.GetTodoRequest) (*to
 	return todo, nil
 }
 
-func (s *server) GetTodoLists(_ *empty.Empty, stream todolists.TodoManager_GetTodoListServer) error {
+func (s *server) GetTodoLists(_ *empty.Empty, stream todolists.TodoManager_GetTodoListsServer) error {
 	log.Println("GetTodoLists in gRPC server")
 
 	todos := []*todolists.Todo{
