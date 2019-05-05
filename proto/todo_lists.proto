@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package todolists;
+
+import "google/protobuf/empty.proto";
+
+service TodoManager {
+    rpc GetTodo (GetTodoRequest) returns (Todo);
+    rpc GetTodoList (google.protobuf.Empty) returns (stream Todo);
+}
+
+message Todo {
+    int32 id = 1;
+    string assignee = 2;
+    string title = 3;
+    string body = 4;
+}
+
+message GetTodoRequest {
+    int32 id = 1;
+}
